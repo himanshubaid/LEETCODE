@@ -30,7 +30,7 @@ public:
         return dp[i][tar]=0;
     }
     bool isSubsetSum(vector<int>arr, int sum){
-        vector<vector<int>>dp(arr.size(),vector<int>(sum+2,0));
+        vector<vector<int>>dp(arr.size(),vector<int>(1e5+1,0));
         
         dp[0][0]=1;
         dp[0][arr[0]]=1;
