@@ -19,16 +19,15 @@ class Solution {
             q.pop();
             for(auto it:adj[front])
             {
-                
-                if(vis[it] && it!=parent[front])
-                {
-                    return true;
-                }
-                else if(!vis[it])
+                if(!vis[it])
                 {
                     vis[it]=1;
                     q.push(it);
                     parent[it]=front;
+                }
+                else if(vis[it] && it!=parent[front])
+                {
+                    return true;
                 }
             }
         }
