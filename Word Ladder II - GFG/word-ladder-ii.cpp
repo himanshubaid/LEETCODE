@@ -56,7 +56,7 @@ public:
             //remove all the visited word
             for(auto it:vis)
              se.erase(it.first);
-            
+            vis.clear();
             level++;
         }
         return ans;
