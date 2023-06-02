@@ -10,32 +10,54 @@ class Solution {
 public:
 
     vector<vector<string>> findSequences(string beginWord, string endWord, vector<string>& wordList) {
-        unordered_set<string> s(wordList.begin(), wordList.end()), visitedAtaLevel;
-        queue<vector<string>> q;
-        q.push({beginWord});
-        vector<vector<string>> ans;
-        int f = 0;
+        unordered_set<string>se;
+        for(auto &word:wordList)
+        {
+            se.insert(word);
+        }
         
-        while(q.size()) {
-            int n = q.size();
-            while(n--) {
-                vector<string> path = q.front(); q.pop();
-                string word = path.back();
-                if(word == endWord) f = 1, ans.push_back(path);
+        vector<vector<string>>ans;
+        unordered_map<string,int>vis;
+        queue<vector<string>>q;
+        q.push({beginWord});
+        
 
-                for(int i=0; i<word.size(); i++) {
-                    string org = word;
-                    for(char c='a'; c<='z'; c++) {
-                        word[i] = c;
-                        path.push_back(word);
-                        if(s.find(word) != s.end()) q.push(path), visitedAtaLevel.insert(word);
-                        path.pop_back();
-                    }
-                    word = org;
+        int level=0;
+        while(!q.empty())
+        {
+            int size=q.size();
+            while(size--)
+            {
+                vector<string> vec=q.front();
+                q.pop();
+
+                string word=vec.back();
+                if(word==endWord)
+                {
+                    ans.push_back(vec);
                 }
+
+               for(int i=0;i<word.size();i++)
+               {
+                  for(int c='a';c<='z';c++)
+                 {
+                    string temp=word;
+                    temp[i]=c;
+                    if(se.count(temp)>0 )
+                    {   vis[temp]=1;
+                       vec.push_back(temp);
+                       q.push(vec);
+                       vec.pop_back();
+                    }
+                 }
+                }
+                
             }
-            if(f) break;
-            for(string adj : visitedAtaLevel) s.erase(adj);
+            //remove all the visited word
+            for(auto it:vis)
+             se.erase(it.first);
+            
+            level++;
         }
         return ans;
     }
