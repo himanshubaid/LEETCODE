@@ -55,7 +55,7 @@ class Solution {
         int node=n;
         ans.push_back(node);
         
-        while(node!=parent[node])
+        while(node!=1)
         {   node=parent[node];
             ans.push_back(node);
         }
