@@ -38,7 +38,7 @@ class Solution {
                 int wt=p.second;
                 if(dis[adjnode]>dist+wt)
                 {
-                    if(dis[adjnode]!=1e9)
+                    if(se.find({dis[adjnode],adjnode})!=se.end());
                     se.erase({dis[adjnode],adjnode});
                     
                     dis[adjnode]=dist+wt;
