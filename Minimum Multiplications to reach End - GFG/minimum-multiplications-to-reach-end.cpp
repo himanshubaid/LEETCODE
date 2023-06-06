@@ -24,7 +24,8 @@ class Solution {
            int dist=it.first;
            int node=it.second;
             q.pop();
-               
+            if(node==end)
+            return dist;
              for(int i=0;i<arr.size();i++)
               {
                    int no=(node*arr[i])%mod;
