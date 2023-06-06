@@ -37,8 +37,7 @@ class Solution {
               }
             
         }
-        if(dis[end]!=INT_MAX)
-        return dis[end];
+        
         return -1;
     }
 };
