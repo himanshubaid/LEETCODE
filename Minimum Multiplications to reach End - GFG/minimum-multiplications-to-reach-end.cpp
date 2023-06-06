@@ -27,7 +27,7 @@ class Solution {
                
              for(int i=0;i<arr.size();i++)
               {
-                   int no=(int)(node*arr[i])%mod;
+                   int no=(node*arr[i])%mod;
                    if(dis[no]>dist+1)
                    {  dis[no]=dist+1;
                       q.push({dist+1,no}); 
