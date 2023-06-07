@@ -3,7 +3,81 @@
 using namespace std;
 
 // } Driver Code Ends
+
+class DSUnion{
+    public:
+    vector<int>parent,rank;
+    
+    DSUnion(int n)
+    {
+        parent.resize(n);
+        rank.resize(n,0);
+        for(int i=0;i<n;i++)
+        parent[i]=i;
+    }
+    
+    int findpar(int u)
+    {
+        if(u==parent[u])
+        return u;
+        return parent[u]=findpar(parent[u]);
+    }
+    
+    void Union(int u,int v)
+    {
+        int up=findpar(u);
+        int vp=findpar(v);
+        
+        if(up==vp) return;
+        
+        if(rank[up]<rank[vp])
+           parent[up]=vp;
+        else if(rank[vp]<rank[up])
+           parent[vp]=up;
+        else
+           {
+               rank[up]++;
+               parent[vp]=up;
+           }
+    }
+};
 class Solution
+{
+	public:
+	//Function to find sum of weights of edges of the Minimum Spanning Tree.
+    int spanningTree(int V, vector<vector<int>> adj[])
+    {
+        vector<pair<int,pair<int,int>>>edges;
+        for(int i=0;i<V;i++)
+        {
+            for(auto it:adj[i])
+            {
+               int node=i;
+               int adjnode=it[0];
+               int wt=it[1];
+               edges.push_back({wt,{node,adjnode}});
+            }
+            
+        }
+        sort(edges.begin(),edges.end());
+        int sum=0;
+        DSUnion ds(V);
+        for(auto it:edges)
+        {
+            int u=it.second.first;
+            int v=it.second.second;
+            int wt=it.first;
+            if(ds.findpar(u)!=ds.findpar(v))
+            {
+                sum+=wt;
+                ds.Union(u,v);
+            }
+        }
+        
+        return sum;
+    }
+};
+/*class Solution
 {
 	public:
 	//Function to find sum of weights of edges of the Minimum Spanning Tree.
@@ -33,7 +107,7 @@ class Solution
         }
         return sum;
     }
-};
+};*/
 
 //{ Driver Code Starts.
 
