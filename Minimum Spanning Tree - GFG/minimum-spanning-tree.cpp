@@ -27,6 +27,7 @@ class Solution
             for(auto it:adj[node])
             {   int adjnode=it[0];
                 int adjdis=it[1];
+                if(!vis[adjnode])
                 pq.push({adjdis,adjnode});// automatically least dist will be on the top to pop
             }
         }
