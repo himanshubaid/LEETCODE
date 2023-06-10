@@ -6,7 +6,7 @@ using namespace std;
 //User function template for C++
 class Solution{
 public:
-	int rowWithMax1s(vector<vector<int> > arr, int n, int m) 
+	/*int rowWithMax1s(vector<vector<int> > arr, int n, int m) 
 	{
 	    int ans=0;
 	    int index=-1;
@@ -22,6 +22,22 @@ public:
 	    }
 	    return index;
 	    
+	}*/
+	// optimized method
+	int rowWithMax1s(vector<vector<int> > arr, int n, int m) {
+	    // code here
+	     int j=m-1;
+        int ans=-1;
+        int flag=0;
+        for(int i=0;i<n;i++)
+        {
+            while(arr[i][j]==1)
+            {
+                ans=i;
+                j--;
+            }
+        }
+        return ans;
 	}
 
 };
