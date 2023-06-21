@@ -6,7 +6,7 @@ using namespace std;
 class Solution
 {
 public:
-void solve(int i,int sum,vector<int> arr,vector<int> &ans,int n)
+void solve(int i,int sum,vector<int> &arr,vector<int> &ans,int n)
 {
     if(i==n)
     {
